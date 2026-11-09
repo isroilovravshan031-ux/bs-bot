@@ -1,0 +1,11 @@
+.env
+.venv/
+.pg/
+data/
+logs/
+__pycache__/
+*.pyc
+.pytest_cache/
+samples/
+namuna/
+local/

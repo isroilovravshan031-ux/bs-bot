@@ -1,0 +1,103 @@
+# CSV fayl shakli. 1C import talabi o'zgarsa, kodga tegmasdan shu faylni o'zgartiring
+# va botni qayta ishga tushiring.
+
+[format]
+delimiter = ";"
+# utf-8-sig tavsiya etiladi: kontragent nomlarida o'zbek kirill harflari bor (Қ, ғ, қ),
+# cp1251 ularni yoza olmaydi. cp1251 tanlansa, bunday nomda eksport to'xtaydi va xabar beradi.
+encoding = "utf-8-sig"
+decimal_separator = "."
+date_format = "%d.%m.%Y"
+datetime_format = "%d.%m.%Y %H:%M:%S"
+# 1C hujjat vaqti talab qiladi; qog'ozda vaqt yo'q.
+document_time = "12:00:00"
+# true: hujjat maydonlari har bir qatorda takrorlanadi.
+# false: faqat hujjatning birinchi qatorida (Excel'da "Сумма документа" ikki marta sanalmaydi).
+repeat_document_fields = true
+
+[defaults]
+currency = "UZS"
+vat = "Без НДС"
+# DIQQAT: skrinshotda "склад снаб..." deb kesilgan. 1C'dagi aniq nomni yozing.
+department = "склад снабжения"
+# Skrinshotda kesilgan. Bo'sh qolsa, 1C o'zi to'ldirishi kutiladi.
+responsible = ""
+
+# Ustunlar skrinshotlardagi tartibda. source: bot maydoni, source yo'q bo'lsa ustun bo'sh qoladi.
+# Doimiy qiymat uchun: value = "matn".
+[[columns]]
+header = "Date"
+source = "doc.datetime"
+[[columns]]
+header = "Number"          # 1C o'zi raqamlaydi
+[[columns]]
+header = "Биржевая"
+[[columns]]
+header = "ИНН"
+source = "doc.inn"
+[[columns]]
+header = "Биржевая"
+[[columns]]
+header = "Контрагент"
+source = "doc.contractor"
+[[columns]]
+header = "Договор"
+source = "doc.contract"
+[[columns]]
+header = "Сумма документа"
+source = "doc.total"
+[[columns]]
+header = "Валюта"
+source = "doc.currency"
+[[columns]]
+header = "Сумма в валюте"
+[[columns]]
+header = "Подразделение"
+source = "doc.department"
+[[columns]]
+header = "Ставки НДС"
+source = "doc.vat"
+[[columns]]
+header = "№ вх.док-та"
+source = "doc.in_number"
+[[columns]]
+header = "Дата вх.док-та"
+source = "doc.in_date"
+[[columns]]
+header = "Доверенность"
+[[columns]]
+header = "Таможня"
+[[columns]]
+header = "Договор таможни" # skrinshotda "Договор та..." deb kesilgan
+[[columns]]
+header = "Утверждено охранником"
+[[columns]]
+header = "Ответственный"
+source = "doc.responsible"
+[[columns]]
+header = "Дата последнего изменения" # 1C o'zi yozadi
+[[columns]]
+header = "Комментарий"
+source = "doc.comment"
+# Hujjat tarkibi (1C oynasining pastki qismi, ТЧ). Bitta hujjat qatorlari "Ключ документа" bo'yicha guruhlanadi.
+[[columns]]
+header = "Ключ документа"
+source = "doc.key"
+[[columns]]
+header = "№ строки"
+source = "line.no"
+[[columns]]
+header = "Материал"
+source = "line.name"
+[[columns]]
+header = "Ед.изм."
+source = "line.unit"
+[[columns]]
+header = "Количество"
+source = "line.qty"
+[[columns]]
+header = "Цена"
+source = "line.price"
+[[columns]]
+header = "Сумма"
+source = "line.amount"
